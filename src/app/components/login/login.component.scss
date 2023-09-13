@@ -1,0 +1,198 @@
+header {
+  background-color: #6428c4;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 70px;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0px 5px 5px #6d6568;
+}
+
+header .headerLogo img {
+  height: 80px;
+}
+
+header .headerDescripcion {
+  font-size: 2rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #ffffff;
+  font-family:Arial, Helvetica, sans-serif;
+  align-items: center;
+}
+
+#login-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  position: relative;
+  background-image: url("../../../assets/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-container .ancho {
+  width: 100%;
+  max-width: 20rem;
+}
+
+#login-container form {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  background-color: rgb(247, 234, 224);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+#login-container .username {
+  margin-bottom: 1rem;
+}
+
+#login-container .username .labelUsername {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+#login-container .username input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  border-radius: 0.25rem;
+  border-width: 1px;
+  width: 100%;
+  line-height: 1.25;
+  color: #374151;
+  appearance: none;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+#login-container .password {
+  margin-bottom: 1.5rem;
+}
+
+#login-container .password .labelPassword {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+#login-container .password input {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  margin-bottom: 0.75rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: #ef4444;
+  width: 100%;
+  line-height: 1.25;
+  color: #374151;
+  appearance: none;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+#login-container .password p {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ef4444;
+}
+
+#login-container .botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#login-container .botones .botonSignIn {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #3b82f6;
+  cursor: pointer;
+}
+
+#login-container .botones .botonSignIn:hover {
+  background-color: #1d4ed8;
+}
+
+#login-container .botones .link {
+  display: inline-block;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  color: #3b82f6;
+  vertical-align: baseline;
+}
+
+#login-container .botones .link:hover {
+  color: #1e40af;
+}
+#login-container .copyright {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-align: center;
+  color: #ffffff;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.botonInfoAlumno {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.botonInfoAlumno:active,
+.botonInfoAlumno:hover {
+  outline: 0;
+}
+
+.botonInfoAlumno span {
+  background-color: rgb(5, 6, 45);
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+}
+
+.botonInfoAlumno:hover span {
+  background: none;
+}

@@ -1,1 +1,30 @@
-<p>login works!</p>
+<header>
+  <div class="headerLogo"><img src="../../../assets/headerLogo.png"></div>
+  <div class="headerDescripcion">Sala de juegos</div>
+  <div class="headerSobreMi"><button class="botonInfoAlumno" role="button" (click)="infoAlumnoRouter()">
+    <span class="text">Quién soy</span>
+  </button></div>
+</header>
+<div id="login-container">
+  <div class="ancho">
+    <form>
+      <div class="username">
+        <label class="labelUsername"> Username </label>
+        <input type="text" placeholder="Username" />
+      </div>
+      <div class="password">
+        <label class="labelPassword"> Password </label>
+        <input type="password" placeholder="******************" />
+        <p>Please write a password.</p>
+      </div>
+      <div class="botones">
+        <button class="botonSignIn" type="button" (click)="login()">
+          Sign In
+        </button>
+        <a class="link" href="#"> Forgot Password? </a>
+      </div>
+    </form>
+    
+    <p class="copyright">&copy;2020 Acme Corp. All rights reserved.</p>
+  </div>
+</div>
