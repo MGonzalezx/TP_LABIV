@@ -14,10 +14,10 @@ export class LoginComponent {
   
 
   async infoAlumnoRouter() {
-		this.router.navigateByUrl('/infoAlumno', { replaceUrl: true });
+		this.router.navigateByUrl('/infoAlumno', { replaceUrl: false });
 	}
 
   async login() {
-		this.router.navigateByUrl('/home', { replaceUrl: true });
+		this.router.navigateByUrl('/home', { replaceUrl: false });
 	}
 }

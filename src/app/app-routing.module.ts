@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { InfoAlumnoComponent } from './components/info-alumno/info-alumno.component';
+
+
+
 
 const routes: Routes = [
   {
@@ -12,25 +12,24 @@ const routes: Routes = [
    
   },
   {
-    path: 'login',
-    component:LoginComponent,
+    path: 'login', loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'home',
-    component:HomeComponent,
+    path: 'infoAlumno', loadChildren: () => import('./components/info-alumno/info-alumno.module').then(m => m.InfoAlumnoModule) 
    
   },
-  {
-    path: 'infoAlumno',
-    component:InfoAlumnoComponent,
-   
+  { 
+    path: 'home', loadChildren: () => import('./components/home/home.module').then(m => m.HomeModule) 
   },
+
   {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'
   },
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
