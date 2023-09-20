@@ -1,0 +1,12 @@
+<!-- Image and text -->
+<nav class="navbar navbar-light">
+    <a class="btn btn-danger" (click)="logOut()">
+      <img src="../../../assets/puerta.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Cerrar Sesión
+    </a>
+
+    <a class="navbar-brand" href="#" *ngIf="userLogged|async as user">
+        <img *ngIf="user.photoURL" src="{{user.photoURL}}" width="30" height="30" class="d-inline-block align-top" alt="">
+       {{user.email}}
+      </a>
+  </nav>

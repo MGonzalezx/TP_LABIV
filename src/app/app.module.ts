@@ -5,17 +5,30 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCardModule } from 'igniteui-angular';
+import { FormsModule } from '@angular/forms';
+import {AngularFireModule} from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { ToastrModule  } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    IgxCardModule
+    IgxCardModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideFirestore(() => getFirestore()),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 <header>
+  
   <div class="headerLogo"><img src="../../../assets/headerLogo.png"></div>
   <div class="headerDescripcion">Sala de juegos</div>
   <div class="headerSobreMi"><button class="botonInfoAlumno" role="button" (click)="infoAlumnoRouter()">
@@ -7,7 +8,7 @@
 </header>
 <div id="login-container">
   <div class="ancho">
-    <form (ngSubmit)="login()" [formGroup]="credentials">
+    <form (ngSubmit)="registro()" [formGroup]="credentials">
       <div class="username">
         <label class="labelUsername">Mail</label>
         <!-- <input type="email" placeholder="Mail" [(ngModel)]="usuario.email" [ngModelOptions]="{standalone: true}" errorText="Invalid email"/> -->
@@ -21,19 +22,10 @@
         <span style="color: red;" *ngIf="(password?.dirty || password?.touched) && password?.errors">Contraseña invalida, tiene que tener al menos 6 caracteres</span>
       </div>
       <div class="botones">
-        <button class="botonSignIn" type="button" [disabled]="!credentials.valid" (click)="login()">
-          Sign In
-        </button>
-        <a class="link" (click)="registro()"> ¿No estás registrado? </a>
-
-       
-      </div>
-      <div class="accesoRapido">
-        <button class="botonAccRapido" type="button" (click)="rellenarInputs()">
-          Acceso rapido
+        <button class="botonSignIn" type="button" (click)="registro()">
+          Registrarse
         </button>
       </div>
-      
     </form>
     
     <p class="copyright">&copy;2020 ARGjuegos Corp. All rights reserved.</p>

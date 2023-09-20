@@ -1,39 +1,114 @@
-<header>
-  <div class="headerLogo"><img src="../../../assets/headerLogo.png" /></div>
-  <div class="headerDescripcion">Sala de juegos</div>
-  <div class="headerSobreMi">
-    <button class="botonInfoAlumno" role="button" (click)="infoAlumnoRouter()">
-      <span class="text">Quién soy</span>
-    </button>
-  </div>
-</header>
+
+<app-navbar></app-navbar>
 
 <div class="home-container">
-    <div class="sample-column card-wrapper">
-        <igx-card>
-            <igx-card-media height="196px">
-                <img src="https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?ixlib=rb-1.2.1&auto=format&fit=crop&w=640&q=50">
-            </igx-card-media>
-        
-            <igx-card-header>
-                <h3 igxCardHeaderTitle>New York</h3>
-                <h5 igxCardHeaderSubtitle>City in New York</h5>
-            </igx-card-header>
-        
-            <igx-card-content>
-                <p>New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers.</p>
-            </igx-card-content>
-        
-            <igx-card-actions>
-                <button igxButton igxRipple>Read More</button>
-                <button igxButton="icon" igxRipple [igxRippleCentered]="true">
-                    <igx-icon>favorite</igx-icon>
-                </button>
-                <button igxButton="icon" igxRipple [igxRippleCentered]="true">
-                    <igx-icon>share</igx-icon>
-                </button>
-            </igx-card-actions>
-        </igx-card>
-    </div>
+  <div class="sample-column card-wrapper">
+    <igx-card class="tarjeta">
+      <igx-card-media height="196px">
+        <img src="../../../assets/ahorcado.png" />
+      </igx-card-media>
+
+      <igx-card-header>
+        <h3 igxCardHeaderTitle>Ahorcado</h3>
+        <h5 igxCardHeaderSubtitle>Juego de letras</h5>
+      </igx-card-header>
+
+      <igx-card-content>
+        <p>Adivina la palabra antes que el hombre quede ahorcado</p>
+      </igx-card-content>
+
+      <igx-card-actions>
+        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>favorite</igx-icon>
+        </button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>share</igx-icon>
+        </button>
+      </igx-card-actions>
+    </igx-card>
+
     
+
+    <igx-card class="tarjeta">
+      <igx-card-media height="196px">
+        <img src="../../../assets/mayoromenor.png" />
+      </igx-card-media>
+
+      <igx-card-header>
+        <h3 igxCardHeaderTitle>Mayor o Menor</h3>
+        <h5 igxCardHeaderSubtitle>Juego de números</h5>
+      </igx-card-header>
+
+      <igx-card-content>
+        <p>
+          Desde un mazo de cartas se va a preguntar si la siguiente carta es
+          mayor o menor. El jugador sumará un punto ante cada carta que adivine.
+        </p>
+      </igx-card-content>
+
+      <igx-card-actions>
+        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>favorite</igx-icon>
+        </button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>share</igx-icon>
+        </button>
+      </igx-card-actions>
+    </igx-card>
+
+    <igx-card class="tarjeta">
+      <igx-card-media height="196px">
+        <img src="../../../assets/preuntados.jpg" />
+      </igx-card-media>
+
+      <igx-card-header>
+        <h3 igxCardHeaderTitle>Preguntados</h3>
+        <h5 igxCardHeaderSubtitle>Juego de preguntas</h5>
+      </igx-card-header>
+
+      <igx-card-content>
+        <p>Con ayuda de la imagen dada, elegir la opción correcta</p>
+      </igx-card-content>
+
+      <igx-card-actions>
+        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>favorite</igx-icon>
+        </button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>share</igx-icon>
+        </button>
+      </igx-card-actions>
+    </igx-card>
+
+    <igx-card class="tarjeta">
+      <igx-card-media height="196px">
+        <img src="../../../assets/numeros.jpg" />
+      </igx-card-media>
+
+      <igx-card-header>
+        <h3 igxCardHeaderTitle>Adivina el número</h3>
+        <h5 igxCardHeaderSubtitle>Juego de números</h5>
+      </igx-card-header>
+
+      <igx-card-content>
+        <p>
+          El jugador debe adivinar un número secreto dentro de un rango
+          específico en la menor cantidad de intentos posibles.
+        </p>
+      </igx-card-content>
+
+      <igx-card-actions>
+        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>favorite</igx-icon>
+        </button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>share</igx-icon>
+        </button>
+      </igx-card-actions>
+    </igx-card>
+  </div>
 </div>

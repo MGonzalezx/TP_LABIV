@@ -20,7 +20,7 @@
   min-width: 300px;
   width: 50%;
   max-width: 500px;
-  min-height: 415px;
+  min-height:600px;
   box-shadow: 5px 5px #fc7100;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -31,6 +31,7 @@
     text-align: center;
     h1 {
       color: #ff5722;
+      
     }
     img {
       width: 150px;
@@ -139,8 +140,14 @@ p {
 }
 
 .desc-juego {
-  padding: 20px 20px 30px 20px;
+  font-size: 25px;
+  padding: 20px 20px 50px 20px;
   color: #333333;
   margin-top: 100px;
   text-align: center;
+}
+
+span{
+  margin-bottom: 25px;
+  color: rgb(0, 38, 255);
 }

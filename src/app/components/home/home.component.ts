@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Card } from './card.blueprint';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,7 @@ export class HomeComponent {
 
   
   constructor(
+    private authService: AuthService,
 		private router: Router
 	) {}
 
@@ -28,6 +29,11 @@ export class HomeComponent {
 
   async infoAlumnoRouter() {
 		this.router.navigateByUrl('/infoAlumno', { replaceUrl: false });
+	}
+
+  async logout() {
+		await this.authService.logout();
+		this.router.navigateByUrl('/', { replaceUrl: true });
 	}
 
 }

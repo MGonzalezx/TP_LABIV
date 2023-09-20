@@ -8,11 +8,13 @@ import { IgxButtonModule,
 	IgxCardModule,
 	IgxRippleModule, 
   IgxAvatarModule} from 'igniteui-angular';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { IgxButtonModule,
     IgxIconModule,
     IgxCardModule,
     IgxRippleModule,
-    IgxAvatarModule
+    IgxAvatarModule,
+    
   ]
 })
 export class HomeModule { }
