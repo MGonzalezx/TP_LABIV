@@ -22,7 +22,7 @@
         <span style="color: red;" *ngIf="(password?.dirty || password?.touched) && password?.errors">Contraseña invalida, tiene que tener al menos 6 caracteres</span>
       </div>
       <div class="botones">
-        <button class="botonSignIn" type="button" (click)="registro()">
+        <button class="botonSignIn" type="button" (click)="registro()" [disabled]="!credentials.valid">
           Registrarse
         </button>
       </div>

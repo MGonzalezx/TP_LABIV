@@ -13,6 +13,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { ToastrModule  } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -14,6 +14,7 @@ export class LogService {
     const placeRef = collection(this.firestore, 'usuarios');
     usuario.activo = true;
     usuario.log = formatDate(new Date(), 'dd-MMM-yyyy hh:mm a', 'en-US');
+    usuario.password = '******';
     return addDoc(placeRef, usuario);
   }
 }

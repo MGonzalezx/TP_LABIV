@@ -3,4 +3,5 @@ export default interface Usuario{
     mail: string;
     log: string;
     activo: true;
+    password: string;
 }

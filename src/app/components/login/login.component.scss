@@ -177,6 +177,17 @@ header {
     color: #ffffff;
     font-family: "Courier New", Courier, monospace;
   }
+
+  .mat-drawer-contenido{
+    text-align: center; 
+    
+  }
+
+  .mat-drawer-container{
+    border-radius: 0.25rem; 
+    min-height: 331px; 
+    margin-bottom: 4.90rem;
+  }
 }
 
 .botonInfoAlumno {

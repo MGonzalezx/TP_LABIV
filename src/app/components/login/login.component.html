@@ -1,10 +1,13 @@
 <header>
-  <div class="headerLogo"><img src="../../../assets/headerLogo.png"></div>
+  <div class="headerLogo"><img src="../../../assets/headerLogo.png" /></div>
   <div class="headerDescripcion">Sala de juegos</div>
-  <div class="headerSobreMi"><button class="botonInfoAlumno" role="button" (click)="infoAlumnoRouter()">
-    <span class="text">Quién soy</span>
-  </button></div>
+  <div class="headerSobreMi">
+    <button class="botonInfoAlumno" role="button" (click)="infoAlumnoRouter()">
+      <span class="text">Quién soy</span>
+    </button>
+  </div>
 </header>
+
 <div id="login-container">
   <div class="ancho">
     <form (ngSubmit)="login()" [formGroup]="credentials">
@@ -12,30 +15,70 @@
         <label class="labelUsername">Mail</label>
         <!-- <input type="email" placeholder="Mail" [(ngModel)]="usuario.email" [ngModelOptions]="{standalone: true}" errorText="Invalid email"/> -->
         <input type="email" placeholder="Mail" formControlName="email" />
-        <span style="color: red;" *ngIf="(email?.dirty || email?.touched) && email?.errors">Email invalido</span>
+        <span
+          style="color: red"
+          *ngIf="(email?.dirty || email?.touched) && email?.errors"
+          >Email invalido</span
+        >
       </div>
       <div class="password">
         <label class="labelPassword">Contraseña</label>
         <!-- <input type="password" placeholder="Contraseña" [(ngModel)]="usuario.password" [ngModelOptions]="{standalone: true}"/> -->
-        <input type="password" placeholder="Contraseña" formControlName="password" errorText="Contraseña invalida"/>
-        <span style="color: red;" *ngIf="(password?.dirty || password?.touched) && password?.errors">Contraseña invalida, tiene que tener al menos 6 caracteres</span>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          formControlName="password"
+          errorText="Contraseña invalida"
+        />
+        <span
+          style="color: red"
+          *ngIf="(password?.dirty || password?.touched) && password?.errors"
+          >Contraseña invalida, tiene que tener al menos 6 caracteres</span
+        >
       </div>
       <div class="botones">
-        <button class="botonSignIn" type="button" [disabled]="!credentials.valid" (click)="login()">
+        <button
+          class="botonSignIn"
+          type="button"
+          [disabled]="!credentials.valid"
+          (click)="login()"
+        >
           Sign In
         </button>
         <a class="link" (click)="registro()"> ¿No estás registrado? </a>
-
-       
       </div>
       <div class="accesoRapido">
-        <button class="botonAccRapido" type="button" (click)="rellenarInputs()">
+        <button class="botonAccRapido" type="button" (click)="drawer.toggle()">
           Acceso rapido
         </button>
       </div>
-      
     </form>
-    
+
     <p class="copyright">&copy;2020 ARGjuegos Corp. All rights reserved.</p>
   </div>
+
+   <!-- Comienzo Menu despliegue de usuarios -->
+   <mat-drawer-container class="mat-drawer-container">
+    <mat-drawer #drawer opened="false" mode="side" style="background-color: rgb(247, 234, 224);">
+      <mat-nav-list>
+        <mat-list-item>
+          <button mat-button (click)="precargarUsuario(1)"> <mat-icon>account_circle</mat-icon> a@a.de</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button (click)="precargarUsuario(2)"> <mat-icon>account_circle</mat-icon> b@b.de</button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-button (click)="precargarUsuario(3)"> <mat-icon>account_circle</mat-icon> c@c.de</button>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer-content>
+        <div class="mat-drawer-contenido">
+          
+        </div>  
+    </mat-drawer-content>
+  </mat-drawer-container>
+  <!-- Fin Menu despliegue de usuarios -->
+ 
 </div>

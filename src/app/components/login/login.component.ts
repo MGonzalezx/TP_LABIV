@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit{
 
 	credentials!: FormGroup;
 
+	credentialsEmail!: FormGroup;
+
   constructor(
 		private router: Router,
 		private authService: AuthService,
@@ -42,6 +44,11 @@ export class LoginComponent implements OnInit{
 				email: ['', [Validators.required, Validators.email]],
 				password: ['', [Validators.required, Validators.minLength(6)]]
 			});
+
+
+		this.credentialsEmail =this.fb.group({
+			email: ['', [Validators.required, Validators.email]],
+		});
 	}
 
   	async infoAlumnoRouter() {
@@ -62,6 +69,8 @@ export class LoginComponent implements OnInit{
 			this.router.navigateByUrl('/home', { replaceUrl: true });
 			const response = await this.placeService.addUsuario(this.credentials.value);
 			console.log(response);
+			
+			
 		} else {
 			console.log("Inicio de sesion fallido");
 			
@@ -78,9 +87,31 @@ export class LoginComponent implements OnInit{
 		this.emitData.emit(loginData);
 	  }
 
-	async rellenarInputs(){
-		this.credentials.get('email')?.setValue('a@a.de');
-		this.credentials.get('password')?.setValue('123456');
-	}
+	public precargarUsuario(tipo: number) {
+		try{
+		  switch (tipo) {
+			case 1:
+			  this.credentials.controls['email'].setValue('a@a.de');
+			  this.credentials.controls['password'].setValue('123456');
+			  break;
+			case 2:
+			  this.credentials.controls['email'].setValue('b@b.de');
+			  this.credentials.controls['password'].setValue('654321');
+			  break;
+			case 3:
+				this.credentials.controls['email'].setValue('c@c.de');
+				this.credentials.controls['password'].setValue('123456');
+				break;
+			default:
+			  console.log("default");
+			  break;
+		  }
+		} catch(error){
+		  console.log('Error en precargar:', error);
+		}
+		
+	  }
+	  
+	   
 
 }
