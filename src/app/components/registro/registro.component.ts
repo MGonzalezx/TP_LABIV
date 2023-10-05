@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LogService } from 'src/app/services/log.service';
+import { switchMap } from 'rxjs';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-registro',
@@ -17,6 +19,7 @@ export class RegistroComponent {
 		private authService: AuthService,
 		private fb: FormBuilder,
     private placeService: LogService,
+    private usersService: UsersService,
 	) {}
 
  // Easy access for form fields
@@ -47,7 +50,14 @@ async registro() {
   
 
   if (user) {
+
+    
+     this.usersService.addUser({ uid: user.user?.uid, email: this.credentials.value['email'] })
+        
+
+        
     const response = await this.placeService.addUsuario(this.credentials.value);
+    
     this.router.navigateByUrl('/home', { replaceUrl: true });
   } 
   else if(user == this.credentials.value){

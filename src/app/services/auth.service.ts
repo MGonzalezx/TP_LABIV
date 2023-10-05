@@ -3,6 +3,7 @@ import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { timeout } from 'rxjs';
+import {authState, Auth} from '@angular/fire/auth';
 
 
 @Injectable({
@@ -13,8 +14,11 @@ export class AuthService {
   constructor(
     private afauth: AngularFireAuth,
     private serviceToast: ToastrService,
-    private router: Router) 
+    private router: Router,
+    ) 
     { }
+
+    currentUser$ = this.afauth.authState;
 
   async register({email ,password}: {email: string, password: string}){
 

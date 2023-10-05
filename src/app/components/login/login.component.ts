@@ -96,7 +96,7 @@ export class LoginComponent implements OnInit{
 			  break;
 			case 2:
 			  this.credentials.controls['email'].setValue('b@b.de');
-			  this.credentials.controls['password'].setValue('654321');
+			  this.credentials.controls['password'].setValue('123456');
 			  break;
 			case 3:
 				this.credentials.controls['email'].setValue('c@c.de');

@@ -1,0 +1,25 @@
+<!-- <app-spinner-juego></app-spinner-juego> -->
+<app-navbar></app-navbar>
+<div class="container">
+    <h1>MAYOR O MENOR</h1>
+    <div class="juego">
+      <h4 class="mensaje">{{mensaje}}</h4>
+      <h4 class="mensaje">{{carta}}</h4>
+      <h4 class="mensaje">{{respuesta}}</h4>
+      <h6 class="mensaje">Intentos: {{intentos}}</h6>
+      <h6 class="mensaje">{{respuestaDos}}</h6>
+      <form [formGroup]="formAdivinar" (ngSubmit)="jugar(formAdivinar.value.texto)"  > 
+        <input type="text"   formControlName="texto">
+        <div class="row">
+          <div class="col centrar">
+           
+            
+            <button class="buttonInteract buttonJugar " type="submit" [disabled]="!formAdivinar.valid">JUGAR</button>
+            <app-button-resetear (emitData)="jugarDeNuevo()" ></app-button-resetear>
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  </div>
+<!-- (ngSubmit)="jugar(formAdivinar.value.numero)"(emitData)="jugarDeNuevo()"-->

@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="chat-list mat-elevation-z5">
+    <div class="search-input">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Buscar Usuarios..."
+          [formControl]="searchControl"
+          [matAutocomplete]="users"
+        />
+      </mat-form-field>
+      <mat-autocomplete #users="matAutocomplete">
+        <mat-option *ngFor="let user of users$ | async" >{{user?.email}}</mat-option>
+      </mat-autocomplete>
+    </div>
+  </div>
+  <div class="messages mat-elevation-z5"></div>
+</div>

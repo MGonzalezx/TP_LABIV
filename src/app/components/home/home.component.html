@@ -18,7 +18,7 @@
       </igx-card-content>
 
       <igx-card-actions>
-        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton igxRipple routerLink="/ahorcado">¡JUGAR!</button>
         <button igxButton="icon" igxRipple [igxRippleCentered]="true">
           <igx-icon>favorite</igx-icon>
         </button>
@@ -48,7 +48,7 @@
       </igx-card-content>
 
       <igx-card-actions>
-        <button igxButton igxRipple>¡JUGAR!</button>
+        <button igxButton igxRipple routerLink="/mayorMenor">¡JUGAR!</button>
         <button igxButton="icon" igxRipple [igxRippleCentered]="true">
           <igx-icon>favorite</igx-icon>
         </button>
@@ -110,5 +110,33 @@
         </button>
       </igx-card-actions>
     </igx-card>
+
+    <igx-card class="tarjeta">
+      <igx-card-media height="196px">
+        <img src="../../../assets/numeros.jpg" />
+      </igx-card-media>
+
+      <igx-card-header>
+        <h3 igxCardHeaderTitle>Sala de chat</h3>
+        <h5 igxCardHeaderSubtitle>Hora de hablar</h5>
+      </igx-card-header>
+
+      <igx-card-content>
+        <p>
+          Podes comunicarte con los demas usuarios
+        </p>
+      </igx-card-content>
+
+      <igx-card-actions>
+        <button igxButton igxRipple routerLink="/chat">¡ENTRAR!</button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>favorite</igx-icon>
+        </button>
+        <button igxButton="icon" igxRipple [igxRippleCentered]="true">
+          <igx-icon>share</igx-icon>
+        </button>
+      </igx-card-actions>
+    </igx-card>
+    
   </div>
 </div>

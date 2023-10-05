@@ -1,5 +1,5 @@
-export default interface Usuario{
-    id?: string;
+export interface Usuario{
+    uid: string;
     mail: string;
     log: string;
     activo: true;

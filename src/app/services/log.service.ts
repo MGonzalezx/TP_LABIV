@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
-import Usuario from '../interfaces/usuario.interface';
+import{ Usuario} from '../interfaces/usuario.interface';
 import { formatDate } from '@angular/common';
 
 @Injectable({
