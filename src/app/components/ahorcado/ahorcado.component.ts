@@ -88,7 +88,7 @@ export class AhorcadoComponent implements OnInit {
         if(this.intentos == 0){
           this.dos = false;
           this.tres = true;
-          this.respuesta = "GAME OVER, perdiste el juego";
+          this.respuesta = "GAME OVER, perdiste el juego, la palabra era " + this.palabra;
         } else{
           this.respuesta = "Esa letra no está, volve a probar.";
         }

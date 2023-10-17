@@ -11,80 +11,103 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./mayor-menor.component.scss']
 })
 export class MayorMenorComponent implements OnInit {
-  formAdivinar: FormGroup;
-  juego: MayorMenor;
-  cartaAdivinar?: any;
-  textoIngresado?: string;
-  intentos: number;
-  inputTexto?: string;
-  mensaje: string;
-  respuesta: string;
-  respuestaDos?: string;
-  carta: string;
+
+  puntos: number = 0;
+
+  vidas: number = 5;
+  vidasTotal: number = 5;
+  win: boolean = false;
+  lose: boolean = false;
   
 
-  constructor(
-   
-    private formBuilder: FormBuilder,
-  ){
-    this.formAdivinar = this.formBuilder.group({
-      texto: [
-        '',
-        [Validators.required,
-        Validators.maxLength(5),
-        Validators.minLength(5),
-      ]
-      ]
-    });
-    
-    this.mensaje = "Adivina si la siguiente carta es 'mayor' o 'menor' a la carta actual";
-    this.respuesta = "Ya podés empezar."
-    this.juego = new MayorMenor();
-    this.cartaAdivinar = this.juego.getCartaAdivinar();
-    this.carta = `La carta actual es ${this.cartaAdivinar.valor} de ${this.cartaAdivinar.palo}. ¿Es la siguiente carta mayor o menor? (responde 'mayor' o 'menor')`
-    this.intentos = 2;
-    
+  arrayNumeros: number[] = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+  numero: number = 0;
+  siguienteNumero: number = 0;
+
+
+  mensajePuntosWin: string = '';
+  mensajePuntosLose: string = '';
+  mensajeFinal: string = '';
+  smsFinal: boolean = false;
+
+  constructor() { 
+    this.numero = this.arrayNumeros[Math.floor(Math.random() * this.arrayNumeros.length)];
   }
+    
 
   ngOnInit(): void {
   }
 
-  public jugar(texto: string){
-    if(this.intentos > 0){
-      this.textoIngresado = texto.toLowerCase().trim();
-      
-      let prueba = this.juego.adivinarCarta(this.textoIngresado);
-      
-      console.log(prueba);
-      switch(prueba){
-        case 0:
-          this.respuesta = "Probá de nuevo";
-          this.intentos--;
-          break;
-        case 1:
-          this.respuesta = "Bien, adivinaste correctamente";
-          this.cartaAdivinar = this.juego.getCartaAdivinar();
-          this.carta = `La carta actual es ${this.cartaAdivinar.valor} de ${this.cartaAdivinar.palo}. ¿Es la siguiente carta mayor o menor? (responde 'mayor' o 'menor')`
-          break;
-        default:
-          this.respuesta = "error"
-      }
-      if(this.intentos == 0){
-          this.respuesta = "GAME OVER, no hay más intentos";
-         
-      }
+  Jugar(botonElegido: any){
+    this.SiguienteRonda(this.numero, botonElegido);
+  } 
+
+  SiguienteRonda(numero:any, botonElegido:any){
+
+    this.siguienteNumero = this.arrayNumeros[Math.floor(Math.random() * this.arrayNumeros.length)];
+
+    if( (botonElegido == 'menor') && (this.siguienteNumero < numero) ){
+      this.puntos++;
+      this.mensajePuntosWin = 'BIEN, suma punto';
+      this.win = true;
+      this.lose = false;
     }
-    this.formAdivinar.reset();
+
+    if( (botonElegido == 'menor') && (this.siguienteNumero > numero) ){
+      //this.puntos++;
+      this.mensajePuntosLose = 'INCORRECTO, no suma punto';
+      this.vidas = this.vidas - 1;
+      this.lose = true;
+      this.win = false;
+    }
+
+    if( (botonElegido == 'mayor') && (this.siguienteNumero > numero) ){
+      this.puntos++;
+      this.mensajePuntosWin = 'BIEN, suma punto';
+      this.win = true;
+      this.lose = false;
+    }
+
+    if( (botonElegido == 'mayor') && (this.siguienteNumero < numero) ){
+      //this.puntos++;
+      this.mensajePuntosLose = 'INCORRECTO, no suma punto';
+      this.vidas = this.vidas - 1;
+      this.lose = true;
+      this.win = false;
+    }
+    this.numero = this.siguienteNumero;
+
+    if(this.puntos === 5){
+      
+      //this.res.agregarResultado('Win', 'Mayor o Menor');
+
+      this.mensajeFinal = 'GANASTE!!!';
+      this.smsFinal = true;
+      this.win = false;
+      this.lose = false;
+
+    }
+
+
+    if(this.vidas === 0){
+
+      //this.res.agregarResultado('Lose', 'Mayor o Menor');
+
+      this.mensajeFinal = 'Fin del juego!!!';
+      this.smsFinal = true;
+      this.win = false;
+      this.lose = false;
+    }
   }
 
-  public jugarDeNuevo(){
-    this.formAdivinar.reset();
-    this.respuesta = "Ya podés empezar."
-    this.respuestaDos = "";
-    this.intentos = 2;
-    this.juego = new MayorMenor();
-    this.cartaAdivinar = this.juego.getCartaAdivinar();
-    this.carta = `La carta actual es ${this.cartaAdivinar.valor} de ${this.cartaAdivinar.palo}. ¿Es la siguiente carta mayor o menor? (responde 'mayor' o 'menor')`
-    //this.numeroAdivinar = this.juego.getNumeroAdivinar();
+  Repetir(){
+    this.vidas = 5;
+    this.puntos = 0;
+    this.mensajePuntosLose = '';
+    this.mensajePuntosWin = '';
+    this.win = false;
+    this.lose = false;
+    this.smsFinal = false;
+
   }
 }

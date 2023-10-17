@@ -13,6 +13,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { ToastrModule  } from 'ngx-toastr';
 import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.component';
+import {HttpClientModule } from '@angular/common/http';
 
 
 
@@ -34,6 +35,8 @@ import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.compon
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
     provideFirestore(() => getFirestore()),
     ToastrModule.forRoot(),
+    HttpClientModule
+    
     
   ],
   providers: [],

@@ -1,26 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {AuthService} from 'src/app/services/auth.service';
-import {UsersService} from 'src/app/services/users.service';
+import { ChatService } from 'src/app/services/chat.service';
+import { resolve } from '@angular/compiler-cli/src/ngtsc/file_system';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
+export class ChatComponent  implements OnInit  {
 
-  user$ = this.userService.currentUserProfile$;
+  mensaje: string = '';
+  elemento: any;
 
-  users$ = this.userService.allUsers$;
-
-  searchControl = new FormControl('');
-
-  constructor(private userService : UsersService){
-
+  constructor(public chatSrv: ChatService) { 
+    this.chatSrv.CargarMensaje().subscribe( () => { 
+      this.elemento.scrollTop = this.elemento.scrollHeight; 
+    } );
   }
   ngOnInit(): void {
-   
+    setTimeout(()=>{
+      this.elemento = document.getElementById('app-mensajes');
+    },20)
+  }
+
+
+  EnviarMensaje(){
+
+    if(this.mensaje.length === 0){
+      return;
+    }
+
+    this.chatSrv.AgregarMensaje(this.mensaje);
+
+    this.mensaje='';
+           
   }
  
 

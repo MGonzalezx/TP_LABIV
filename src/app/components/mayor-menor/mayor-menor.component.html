@@ -1,25 +1,54 @@
-<!-- <app-spinner-juego></app-spinner-juego> -->
+<app-spinner-juego></app-spinner-juego>
 <app-navbar></app-navbar>
-<div class="container">
-    <h1>MAYOR O MENOR</h1>
-    <div class="juego">
-      <h4 class="mensaje">{{mensaje}}</h4>
-      <h4 class="mensaje">{{carta}}</h4>
-      <h4 class="mensaje">{{respuesta}}</h4>
-      <h6 class="mensaje">Intentos: {{intentos}}</h6>
-      <h6 class="mensaje">{{respuestaDos}}</h6>
-      <form [formGroup]="formAdivinar" (ngSubmit)="jugar(formAdivinar.value.texto)"  > 
-        <input type="text"   formControlName="texto">
-        <div class="row">
-          <div class="col centrar">
-           
-            
-            <button class="buttonInteract buttonJugar " type="submit" [disabled]="!formAdivinar.valid">JUGAR</button>
-            <app-button-resetear (emitData)="jugarDeNuevo()" ></app-button-resetear>
+<div class="principal">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-sm-3">
+        <div class="img__container">
+          <span class="counter"> Vidas: {{vidas}}/{{vidasTotal}}</span>
+          <img src="../../../assets/mayor-menor-cartas/{{numero}}.png" alt="" style="margin-top: 20px;">
+          
+          <br><br>
+    
+          <div class="mensaje win" *ngIf="win">
+            <span>{{mensajePuntosWin}}</span>
           </div>
+        
+          <div class="mensaje lose" *ngIf="lose">
+            <span>{{mensajePuntosLose}}</span>
+          </div>
+    
+          
+        
+          
         </div>
-      </form>
+      </div>
+
+      <div class="col-sm-5">
+
+        <span class="counter"> Puntos: {{puntos}}</span>
+
+        <br><br>
+        
+        <h2 *ngIf="!smsFinal" style="margin-left: 5px;" >La siguiente carta es:</h2>
+
+        <div class="mensaje lose" *ngIf="smsFinal">
+          <span>{{mensajeFinal}}</span>
+        </div>
+
+        <br>
+        <button type="submit" class="col btn" *ngIf="!smsFinal" (click)="Jugar('mayor')">Mayor</button>
+        <button type="submit" class="col btn" *ngIf="!smsFinal" (click)="Jugar('menor')">Menor</button>
+
+        <button type="submit" class="col btn" *ngIf="smsFinal" (click)="Repetir()"><i class="fas fa-undo"></i>Repetir</button>
+        <button type="submit" class="col btn" *ngIf="smsFinal" [routerLink]="['/home']" routerLinkActive="router-link-active" >Salir</button>
+      </div>
+      
     </div>
-  
+
+    
+    
   </div>
-<!-- (ngSubmit)="jugar(formAdivinar.value.numero)"(emitData)="jugarDeNuevo()"-->
+</div>
+

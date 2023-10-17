@@ -43,6 +43,15 @@ const routes: Routes = [
     
   },
 
+  { 
+    path: 'preguntados', loadChildren: () => import('./components/preguntados/preguntados.module').then(m => m.PreguntadosModule),
+    
+  },
+  { 
+    path: 'adivinarNumero', loadChildren: () => import('./components/adivinar-numero/adivinar-numero.module').then(m => m.AdivinarNumeroModule),
+    
+  },
+
   {
     path: '**',
     redirectTo: 'login',
