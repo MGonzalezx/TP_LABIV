@@ -10,115 +10,109 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./ahorcado.component.scss']
 })
 export class AhorcadoComponent implements OnInit {
-  formAhorcado: FormGroup;
-  juego: Ahorcado;
-  intentos: number;
+  title = 'Ahorcado';
+  puntos: number = 0;
+  diccPosition: number = 0;
+
+  //palabras en juego
+  palClave = ["PRUEBA", "PARED", "TIJERA", "ELEFANTE","COLECTIVO"];
+
+  palabra:string = '';
+  palabraOculta:string = '';
   
-  palabra: string;
-  palabraSeparada: string[];
-  palabraUsuario: string = "";
-  palabraUsuarioSeparada: string[] = [];
-  respuesta: string;
-  mensaje: string;
-  inicio = true;
-  uno = false;
-  dos = false;
-  tres = false;
+  intentos:number = 3;
+  intentos_usuarios:number = 0;
+  win:boolean = false;
+  lose:boolean = false;
+  message:string = '';
 
-  constructor(
-    
-    private formBuilder: FormBuilder,
-  ) {
-    this.formAhorcado = this.formBuilder.group({
-      letra: [
-        '',
-        [Validators.required,
-        Validators.maxLength(1)]
-      ]
-    });
-    this.mensaje = "Adivina la palabra oculta en 3 intentos o menos";
-    this.respuesta = "Para empezar introduce una letra.";
-    
-    this.intentos = 3;
-    this.juego = new Ahorcado();
-    this.palabra = this.juego.getPalabra();
-    this.palabraSeparada = this.palabra.split('');
-    this.palabraSeparada.forEach((letra) => {
-      this.palabraUsuarioSeparada.push("_");
-      this.palabraUsuario += "_ ";
-    });
-
+  letters = ['A','B','C','D','E','F','G','H','I','J',
+            'K','L','M','N','Ñ','O','P','Q','R','S',
+            'T','U','V','W','X','Y','Z'];
+  
+  constructor(){
+    this.selectWord();
   }
 
   ngOnInit(): void {
   }
 
-  public jugar(letra: string){
-    let acierto: boolean = false;
-    if(this.intentos > 0){
-      for (let index = 0; index < this.palabra.length; index++) {
-        //comparo cada letra de la palabra con la introducida
-        if(letra == this.palabraSeparada[index]){
-          //si es igual, la ubico en usuarioSeparada, en el mismo lugar
-          this.palabraUsuarioSeparada[index] = this.palabraSeparada[index];
-          this.setPalabraMuestra();
-          acierto = true;
-          break;
-        }
-      }
-      if(acierto){
-        //comparo con la palabra introducida a ver si es correcta
-        if(this.juego.compararPalabras(this.palabraSeparada, this.palabraUsuarioSeparada)){
-          this.intentos = 0;
-          this.respuesta = "ADIVINASTE LA PALABRA";
-        } else {
-          this.respuesta = "Acertaste la letra, sigue intentando";
-        }
-      } else{
-        this.intentos--;
-        if(this.intentos == 2){
-          this.inicio = false
-          this.uno = true;
-        }
-        if(this.intentos == 1){
-          this.uno = false;
-          this.dos = true;
-        }
-        //si se terminaron los intentos pierde el juego
-        if(this.intentos == 0){
-          this.dos = false;
-          this.tres = true;
-          this.respuesta = "GAME OVER, perdiste el juego, la palabra era " + this.palabra;
-        } else{
-          this.respuesta = "Esa letra no está, volve a probar.";
-        }
-      }
-      this.formAhorcado.reset();
+  setAttempts(intnetos:number){
+    this.intentos = intnetos;
+  }
+
+  getAttempts():number{
+    return this.intentos;
+  }
+
+
+  checkLetter(letter:string):void{
+    if(!this.palabra.includes(letter)){
+      this.intentos_usuarios += 1;
+      const index = this.letters.indexOf(letter);
+      this.letters.splice(index, 1);
+    }
+    this.replaceWord(letter);
+  }
+
+  selectWord(){
+    this.diccPosition = Math.floor(Math.random() * 5);
+    this.palabra = this.palClave[this.diccPosition];
+    this.palabraOculta = '_ '.repeat(this.palabra.length);
+  }
+
+  winVerification(){
+    const WordArray = this.palabraOculta.split(' ');
+    const WordString = WordArray.join('');
+    if(WordString == this.palabra){
+
+     
+
+      this.message = 'Ganaste';
+      this.puntos =+ 1;
+      this.win = true;
+      this.hideInterface();
+    }
+
+    if(this.intentos_usuarios >= this.intentos){
+
+     
+
+      this.intentos_usuarios = 3;
+      this.message = 'Perdiste, la palabra es : ' + this.palabra;
+      this.lose = true;
+      this.hideInterface();
     }
   }
 
-  public setPalabraMuestra(){
-    this.palabraUsuario = "";
-    this.palabraUsuarioSeparada.forEach((letra) => {
-      this.palabraUsuario += letra + ' ';
-    });
+  hideInterface(){
+    if((this.win || this.lose) == true){
+      const lettersBox = document.querySelector('.letters__container');
+      if(lettersBox != null){lettersBox.classList.add('hide');}
+    }
+  }
+  
+  replaceWord(letter:string){
+    const ArrayWord = this.palabraOculta.split(' ');
+
+    for(let i = 0; i < this.palabra.length; i++){
+      if(this.palabra[i] === letter){
+        ArrayWord[i] = letter;
+      }
+    }
+
+    this.palabraOculta = ArrayWord.join(' ');
+    this.winVerification();
   }
 
-  public jugarDeNuevo(){
-    this.respuesta = "Para empezar introduce una letra.";
-    this.inicio = true;
-    this.uno = false;
-    this.dos = false;
-    this.tres = false;
-    this.formAhorcado.reset();
-    this.intentos = 3;
-    this.palabraUsuario = "";
-    this.palabraUsuarioSeparada = [];
-    this.palabra = this.juego.getPalabra();
-    this.palabraSeparada = this.palabra.split('');
-    this.palabraSeparada.forEach((letra) => {
-      this.palabraUsuarioSeparada.push("_");
-      this.palabraUsuario += "_ ";
-    });
+  restartGame(){
+    this.win = false;
+    this.lose = false;
+    this.intentos_usuarios = 0;
+    document.querySelector('.letters__container')?.classList.remove('hide');
+    this.selectWord();
+    this.letters = ['A','B','C','D','E','F','G','H','I','J',
+            'K','L','M','N','Ñ','O','P','Q','R','S',
+            'T','U','V','W','X','Y','Z'];
   }
 }

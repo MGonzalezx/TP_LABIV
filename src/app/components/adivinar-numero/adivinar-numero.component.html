@@ -4,17 +4,24 @@
 <div class="container">
   <h1>ADIVINAR NÚMERO</h1>
   <div class="juego">
-    <h4 class="mensaje">{{mensaje}}</h4>
-    <h4 class="mensaje">{{respuesta}}</h4>
-    <h6 class="mensaje">Intentos: {{intentos}}</h6>
+    <h4 class="mensajeUsuario">Introducí un numero del 1 al 100</h4>
+    <h4 class="mensaje" >{{respuesta}}</h4>
+    <h6 class="mensaje"  >Intentos: {{intentos}}</h6>
     <h6 class="mensaje">{{respuestaDos}}</h6>
     <form [formGroup]="formAdivinar" (ngSubmit)="jugar(formAdivinar.value.numero)">
-      <input type="number"  min="1" max="100" formControlName="numero">
+      <input type="number"  min="1" max="100"  formControlName="numero">
       <div class="row">
         <div class="col centrar">
           <button class="buttonInteract buttonJugar btn btn-success" style="margin-right: 5px; margin-top: 5px;" type="submit" [disabled]="!formAdivinar.valid">JUGAR</button>
           <app-button-resetear (emitData)="jugarDeNuevo()"></app-button-resetear>
+          <!-- <button type="submit" class="buttonInteract buttonJugar btn btn-danger" style="margin-left: 5px; margin-top: 5px;" [routerLink]="['/home']" routerLinkActive="router-link-active" >Salir</button> -->
         </div>
+        <h4>Números ya usados</h4>
+        <div class="numerosUsados" >
+          <h5 class="numeros" *ngFor="let numero of arrayNumerosUsados">{{numero}}</h5>
+        </div>
+         
+        
       </div>
     </form>
   </div>

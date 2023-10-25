@@ -5,6 +5,12 @@
   width: 100vw;
 }
 
+.container {
+
+  text-align: center;
+ 
+  margin-top: -27px;
+}
 
 .img__container{
   display: flex;
@@ -20,6 +26,7 @@ div .message{
   font-size: 2rem;
   font-weight: 900;
   margin-bottom: .5rem;
+  margin-left: 1rem;
 }
 
 div .counter{
@@ -100,3 +107,10 @@ div .botones_resultados{
   animation: gradient 15s ease infinite;
   
 }
+
+.botones{
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+

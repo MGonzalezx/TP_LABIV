@@ -17,9 +17,10 @@ export class AdivinarNumeroComponent implements OnInit {
   numeroIngresado?: number;
   intentos: number;
   inputTexto?: string;
-  mensaje: string;
+  //mensaje: string;
   respuesta: string;
   respuestaDos?: string;
+  arrayNumerosUsados: number[] = [];
 
 
   constructor(
@@ -27,18 +28,23 @@ export class AdivinarNumeroComponent implements OnInit {
   ){
     this.formAdivinar = this.formBuilder.group({
       numero: [
+        
         '',
         [Validators.required,
         Validators.maxLength(3),
         Validators.max(100),
-        Validators.min(1)]
-      ]
+        Validators.min(1)],
+        
+      ],
+    
     });
-    this.mensaje = "Introducí un numero del 1 al 100";
+    //this.mensaje = "Introducí un numero del 1 al 100";
     this.respuesta = "Ya podés empezar."
     this.juego = new AdivinarNumero();
     this.numeroAdivinar = this.juego.getNumeroAdivinar();
     this.intentos = 10;
+    console.log(this.numeroAdivinar);
+    
    
   }
 
@@ -46,37 +52,43 @@ export class AdivinarNumeroComponent implements OnInit {
   }
 
   public jugar(numeroString: string){
+
+
     if(this.intentos > 0){
       this.numeroIngresado = +numeroString;
-      let prueba = this.juego.adivinarNumero(this.numeroIngresado);
-      console.log(prueba);
-      switch(prueba){
-        case 0:
-          this.respuesta = "Te pasaste, probá de nuevo";
-          this.intentos--;
-          break;
-        case 1:
-          this.respuesta = "GANADOR, adivinaste el número";
-          this.respuestaDos = "El número era " + this.numeroAdivinar;
-          //this.puntuacion.ganadas++;
-          //this.puntuacion.cantidad++;
-          //this.cloudStorageService.setPuntuacion(1, this.puntuacion);
-          this.intentos = 0;
-          break;
-        case 2:
-          this.respuesta = "Es muy chico, probá de nuevo";
-          this.intentos--;
-          break;
-        default:
-          this.respuesta = "error"
+      if(this.arrayNumerosUsados.includes(this.numeroIngresado)){
+          this.respuesta = "Numero ya usado";
+      }else{
+        let prueba = this.juego.adivinarNumero(this.numeroIngresado);
+        //console.log(prueba);
+        switch(prueba){
+          case 0:
+            this.respuesta = "Te pasaste, probá de nuevo";
+            this.intentos--;
+            this.arrayNumerosUsados.push(this.numeroIngresado);
+            break;
+          case 1:
+            this.respuesta = "GANASTE, adivinaste el número";
+            this.respuestaDos = "El número era " + this.numeroAdivinar;
+          this.formAdivinar.disable();
+            break;
+          case 2:
+            this.respuesta = "Es muy chico, probá de nuevo";
+            this.intentos--;
+            this.arrayNumerosUsados.push(this.numeroIngresado);
+            break;
+          default:
+            this.respuesta = "error"
+        }
+        if(this.intentos == 0){
+            this.respuesta = "GAME OVER, no hay más intentos";
+            this.respuestaDos = "El número era " + this.numeroAdivinar;
+            //this.puntuacion.perdidas++;
+            //this.puntuacion.cantidad++;
+            //this.cloudStorageService.setPuntuacion(1, this.puntuacion);
+        }
       }
-      if(this.intentos == 0){
-          this.respuesta = "GAME OVER, no hay más intentos";
-          this.respuestaDos = "El número era " + this.numeroAdivinar;
-          //this.puntuacion.perdidas++;
-          //this.puntuacion.cantidad++;
-          //this.cloudStorageService.setPuntuacion(1, this.puntuacion);
-      }
+      
     }
     this.formAdivinar.reset();
   }
@@ -88,5 +100,7 @@ export class AdivinarNumeroComponent implements OnInit {
     this.intentos = 10;
     this.juego.setNumeroAdivinar();
     this.numeroAdivinar = this.juego.getNumeroAdivinar();
+    this.arrayNumerosUsados = [];
+    this.formAdivinar.enable();
   }
 }

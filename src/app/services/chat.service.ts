@@ -3,6 +3,8 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 import { Mensaje } from '../interfaces/mensaje.interface';
 import { map } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { DatePipe } from '@angular/common';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +16,10 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
     //public nombreUser: any = localStorage.getItem('email');
     public nombreUser: any;
 
+    private value? : Timestamp
 
-    constructor(public aFire: AngularFirestore, public authFire: AngularFireAuth) { 
+
+    constructor(public aFire: AngularFirestore, public authFire: AngularFireAuth, private datePipe: DatePipe) { 
 
         this.authFire.authState.subscribe(res=>{
           if(res && res.uid){
@@ -26,7 +30,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
       CargarMensaje(){
 
-        this.itemsCollections = this.aFire.collection<Mensaje>('chats', ref=>ref.orderBy('fecha','desc').limit(5));
+        this.itemsCollections = this.aFire.collection<Mensaje>('chats', ref=>ref.orderBy('fecha','desc').limit(17));
     
         return this.itemsCollections.valueChanges().pipe(
     
@@ -46,7 +50,9 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
       AgregarMensaje(sms: string){
 
         let dato: Date = new Date();
-        let tiempo =  dato.getHours() + ":" + dato.getMinutes();
+        let tiempo =  dato.getDay() + "/" +dato.getMonth() + "/" + dato.getFullYear()+ "      " + dato.getHours() + ":" + dato.getMinutes();
+        let tiempoPipe =  this.datePipe.transform(this.value?.toMillis(), 'short') ?? '';
+
         
         let retMensaje: Mensaje = {
           nombre: this.nombreUser,

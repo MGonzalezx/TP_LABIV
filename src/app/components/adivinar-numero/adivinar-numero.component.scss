@@ -8,6 +8,8 @@
     -webkit-animation: AnimationName 17s ease infinite;
     animation: AnimationName 17s ease infinite;
     margin-top: -27px;
+
+    
   }
 
   @-webkit-keyframes AnimationName {
@@ -23,5 +25,44 @@
 
   .titulo{
     font-family:Georgia, 'Times New Roman', Times, serif;
-    
+    color: rgb(123, 29, 29);
   }
+
+  h1{
+    color: rgb(123, 29, 29);
+  }
+
+  .mensajeUsuario{
+    
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: rgb(123, 29, 29);
+  }
+
+  h4{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(123, 29, 29);
+  }
+
+  h6{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(123, 29, 29);
+  }
+
+  div .numerosUsados{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: .3rem .6rem;
+}
+
+div .numeros{
+  font-size: 1rem;
+  padding: .6rem 1.2rem;
+  background-color: rgb(123, 29, 29);
+  margin: .3rem .6rem;
+  border-radius: .5rem;
+  border: 1px solid #666;
+  color: #fff;
+  filter: drop-shadow(0px 0px 2px#666);
+  font-weight: 400;
+}

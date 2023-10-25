@@ -4,34 +4,47 @@
 
   <div class="container main-container">
 
-      <div class="chat-window">
+      <div class="chat-window ">
           <h2>Chateamos?</h2>
 
           <hr>
 
-          <div class="app-mensajes" id="app-mensajes">
+          <div class=" chat-area" id="app-mensajes">
+           
+              <div *ngFor='let chat of chatSrv.chats' >
 
-              <div *ngFor='let chat of chatSrv.chats' [ngClass]="{'text-right':chatSrv.nombreUser == chat.nombre}">
-
-                  <span class="badge" [ngClass]="{
-                                      'badge-primary':chatSrv.nombreUser == chat.nombre, 
-                                      'badge-success':chatSrv.nombreUser != chat.nombre}">
-                                      
-                                      {{chat.nombre}}
-                  </span>
+                  
                 
-                  <br>
+                  
                 
-                  <p class="badge badge-pill badge-light">
-                      {{chat.mensaje}}
-                  </p>
+                  <div class="chat-bubble-container " [ngClass]="{'text-right':chatSrv.nombreUser == chat.nombre, 'text-left':chatSrv.nombreUser != chat.nombre}">
+                    <!-- <span class="badge" >
+                        
+                        {{chat.nombre}}
+                    </span> -->
+                    
+                    <div class="chat-bubble" [ngClass]="{
+                        'badge-primary':chatSrv.nombreUser == chat.nombre, 
+                        'badge-success':chatSrv.nombreUser != chat.nombre}">
+                        <span class="badge" >
+                        
+                            {{chat.nombre}}
+                        </span>
+                        <br>
+                        {{chat.mensaje}}
+                        <span class="chat-date">
+                           {{chat.hora}}
+                        </span>
+                    </div>
+                     
+                  </div>
 
-                  <span class="hora-chat">{{chat.hora}}</span>
+                  
 
               </div>  
 
               <input type="text" class="form-control" name="mensaje" autocomplete="off" [(ngModel)]="mensaje" (keyup.enter)="EnviarMensaje()" placeholder="Enviar... ">
-              
+           
           </div> 
 
       </div>
@@ -39,3 +52,5 @@
   </div>
 
 </div>
+
+

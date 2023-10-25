@@ -1,5 +1,6 @@
 import { NumeroRandom } from '../numeroRandom';
 export class Ahorcado{
+  
   listaPalabras: string[];
   palabra?: string;
   indice?: number;

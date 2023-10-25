@@ -1,25 +1,61 @@
 <app-spinner-juego></app-spinner-juego>
 <app-navbar></app-navbar>
 <div class="container">
-    <h1 class="titulo" >AHORCADO</h1>
-  
-      <img *ngIf="inicio" class="imagen" src="../../../assets/ahorcadoUno.png">
-      <img *ngIf="uno" class="imagen" src="../../../assets/ahorcadoDos.png">
-      <img *ngIf="dos" class="imagen" src="../../../assets/ahorcadoTres.png">
-      <img *ngIf="tres" class="imagen" src="../../../assets/ahorcadoCuatro.png">
-  
-    <h4 class="mensaje">{{mensaje}}</h4>
-    <h4 class="mensaje">{{respuesta}}</h4>
-    <h4 class="mensaje">Palabra a adivinar: {{palabraUsuario}}</h4>
-    <h6 class="mensaje">Intentos: {{intentos}}</h6>
-    <form [formGroup]="formAhorcado" (ngSubmit)="jugar(formAhorcado.value.letra)">
-      <input type="text" class="input" size="10" formControlName="letra">
-      <div class="row">
-        <div class="col centrar">
-          <button class="buttonInteract buttonJugar btn btn-success" style="margin-right: 5px; margin-top: 5px;" type="submit" [disabled]="!formAhorcado.valid">JUGAR</button>
-          <app-button-resetear  (emitData)="jugarDeNuevo()"></app-button-resetear>
+  <div class="row">
+
+    <div class="col-sm-3">
+      <span class="message">Puntos: </span>
+      <span class="counter">{{puntos}}</span>
+      <div class="img__container">
+        <img src="../assets/{{intentos_usuarios}}.png" alt="">
+        <span class="message">Intentos: </span>
+        <span class="counter">{{intentos_usuarios}}/{{intentos}}</span>
+         
+        <br><br>
+
+        <div class="mensaje win" *ngIf="win">
+          <span>{{message}}</span>
         </div>
+      
+        <div class="mensaje lose" *ngIf="lose">
+          <span>{{message}}</span>
+        </div>
+      
+        
       </div>
-    </form>
-  
+    </div>
+
+    <div class="col-sm-6">
+      <div class="row justify-content-center">
+        <br><br>
+
+        <h1 class="h1Plabra">Ahorcado</h1>
+
+        <h2 class="h1Plabra">!Adivina la palabra!</h2>
+
+        <div class="word__container"  style="align-items: center;">
+          <h1> {{palabraOculta}} </h1>
+        </div>
+    
+        <div class="letters">
+          <button class="letter_button" *ngFor="let letter of letters" (click)="checkLetter(letter)">{{letter}}</button>
+        </div>
+
+        <div class='row  justify-content-center' *ngIf="win || lose">
+          
+            <button type="submit" class="botones_resultados col-2" [routerLink]="['/home']" routerLinkActive="router-link-active" >Salir</button>
+          
+            
+          
+            <button type="submit" class="botones_resultados col-2 text-align: center; " (click)="restartGame()"><i class="fas fa-undo">Reiniciar</i></button>
+          
+        </div>
+      </div>         
+    </div>
+
+   
   </div>
+</div>
+
+
+

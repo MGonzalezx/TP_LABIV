@@ -26,7 +26,11 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
   .badge{
     color: #000;
     font-size:1rem;
-    background-color: #717171b0;
+    
+    
+   padding-left: 50;
+
+  
   }
   
   /* Scoll */
@@ -62,9 +66,9 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
     
     .chat-window{
       padding: 10px;
-      width: 100vw;
+      width: 35vw;
       height: 100vh;
-      overflow: hidden;
+      overflow: auto;
       border: 1px solid #717171;
       border-radius: 20px;
       box-shadow: 8px 7px 22px -4px rgba(94, 40, 40, 0.75);
@@ -73,9 +77,9 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
       background-color: rgba(75, 48, 48, 0.523);
     }
     
-    .app-mensajes{
+    #app-mensajes{
       overflow-y:scroll;
-      height:500px;
+      height:750px;
       /*background:gray;*/
       padding: 5px;
       scrollbar-color: rgb(138, 138, 138) #785978;
@@ -111,3 +115,54 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
     .fadeIn {
       animation-name: fadeIn;
     }
+
+    .chat-bubble-container{
+      display: flex;
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .chat-bubble-container.text-right{
+      justify-content: flex-end;
+    }
+
+    .chat-bubble-container.text-right > .chat-bubble{
+      background: #c5cae9;
+    }
+
+    
+
+    .chat-bubble{
+      background: white;
+      padding-top: 8px;
+      padding-bottom: 18px;
+      padding-left: 8px;
+      padding-right: 100px;
+      margin-bottom: 8px;
+      width: fit-content;
+
+      border-radius: 10px;
+
+      position: relative;
+    }
+
+    .chat-bubble > .chat-date{
+      position: absolute;
+      bottom: 2px;
+      right: 8px;
+      font-size: 0.7rem;
+      color: black;
+    }
+
+    .chat-area{
+      height: 800px;
+
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+    }
+
+    .chat-area > :first-child {
+      margin-top: auto;
+    }
+

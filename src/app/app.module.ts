@@ -6,15 +6,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCardModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import {AngularFireModule} from '@angular/fire/compat';
+
 import { environment } from 'src/environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import {AngularFireModule} from '@angular/fire/compat';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { ToastrModule  } from 'ngx-toastr';
 import { MayorMenorComponent } from './components/mayor-menor/mayor-menor.component';
 import {HttpClientModule } from '@angular/common/http';
-
+import { DatePipe } from '@angular/common';
 
 
 
@@ -39,7 +40,7 @@ import {HttpClientModule } from '@angular/common/http';
     
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
